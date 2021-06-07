@@ -16,6 +16,8 @@ janela = pygame.display.set_mode((x,y))
 #janela = pygame.display.set_mode((x,y), pygame.SCALED | pygame.FULLSCREEN)
 pygame.display.set_caption('XADREZ')
 fonte = pygame.font.SysFont('arial',40,bold=True,italic = False)
+icon = pygame.image.load('icon.png')
+pygame.display.set_icon(icon)
 
 
 ################################
@@ -43,6 +45,19 @@ cavalo_pretas = pygame.transform.scale(cavalo_pretas,(68,68))
 
 peao_brancas = pygame.image.load(nomes_pecas_brancas[3])
 peao_brancas = pygame.transform.scale(peao_brancas, (68,68))
+bispo_brancas = pygame.image.load(nomes_pecas_brancas[0])
+rei_brancas = pygame.image.load(nomes_pecas_brancas[1])
+cavalo_brancas = pygame.image.load(nomes_pecas_brancas[2])
+dama_brancas = pygame.image.load(nomes_pecas_brancas[4])
+torre_brancas = pygame.image.load(nomes_pecas_brancas[5])
+
+pecas_brancas = [bispo_brancas,rei_brancas,cavalo_brancas,dama_brancas,torre_brancas]
+pecas_brancas2 = []
+for i in pecas_brancas:
+	a = pygame.transform.scale(i, (68,68))
+	pecas_brancas2.append(a)
+
+
 
 tabuleiro = [['a1','a2','a3','a4','a5','a6','a7','a8'],
 			 ['b1','b2','b3','b4','b5','b6','b7','b8'],
@@ -56,11 +71,12 @@ tabuleiro = [['a1','a2','a3','a4','a5','a6','a7','a8'],
 coord_coluna_horizontal = ['a','b','c','d','e','f','g','h']
 coord_coluna_vertical = ['1','2','3','4','5','6','7','8']
 
+
+
 ##################################################
 # FAZER O JOGO RODAR
 while True:
 	
-
 	###################################################
 	## SAIR DO JOGO
 	for event in pygame.event.get():
@@ -127,10 +143,10 @@ while True:
 	janela.blit(torre_negras,(480,50))
 
 	######### REI NEGRAS
-	janela.blit(rei_pretas,((50+2*62+62,50)))
+	janela.blit(dama_pretas,((50+2*62+62,50)))
 
 	########## DAMA NEGRAS
-	janela.blit(dama_pretas,(50+4*62,50))
+	janela.blit(rei_pretas,(50+4*62,50))
 
 	########## CAVALOS NEGROS
 	janela.blit(cavalo_pretas,(50+62,50))
@@ -144,6 +160,28 @@ while True:
 		janela.blit(peao_brancas,(y+62,550-62*2 -7))
 		y += 62
 		contador += 1
+	######## bispos brancos
+	janela.blit(pecas_brancas2[0], (50+2*62,500-15))
+	janela.blit(pecas_brancas2[0], (50+2*62+3*62,500-15))
+
+	##### TORRES BRANCAS
+	janela.blit(pecas_brancas2[4],(50,500-15))
+	janela.blit(pecas_brancas2[4],(480,500-15))
+
+	##### REI BRANCAS
+	janela.blit(pecas_brancas2[1],(50+4*62,500-15))
+
+	#### DAMA BRANCAS
+	janela.blit(pecas_brancas2[3],(50+3*62,500-15))
+	
+	### CAVALOS BRANCOS
+	janela.blit(pecas_brancas2[2],(50+62,500-15))
+	janela.blit(pecas_brancas2[2],(480-62,500-15))
+
 
 
 	pygame.display.update()
+
+
+
+pygame.quit()
